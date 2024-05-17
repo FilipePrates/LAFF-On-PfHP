@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+// #include <blis.h>
+
 #include "omp.h"
 
 int main(int argc, char *argv[])
