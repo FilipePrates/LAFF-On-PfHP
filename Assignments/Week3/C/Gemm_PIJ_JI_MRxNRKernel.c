@@ -13,9 +13,9 @@ void Gemm_MRxNRKernel( int, double *, int, double *, int,
 void Gemm_JI_MRxNRKernel( int, int, int, double *, int, double *, int,
 		        double *, int );
 
-#define MC 204
-#define NC 204
-#define KC 204
+#define MC 96
+#define NC 96
+#define KC 96
 
 void MyGemm( int m, int n, int k, double *A, int ldA,
 	     double *B, int ldB, double *C, int ldC )
@@ -29,12 +29,12 @@ void MyGemm( int m, int n, int k, double *A, int ldA,
     exit( 0 );
   }
   
-  for ( int i=0; i<m; i+=MC ) {
-    int ib = min( MC, m-i );        /* Last block may not be a full block */
-    for ( int j=0; j<n; j+=NC ) {
-      int jb = min( NC, n-j );        /* Last block may not be a full block */
-      for ( int p=0; p<k; p+=KC ) {
-        int pb = min( KC, k-p );        /* Last block may not be a full block */
+  for ( int p=0; p<k; p+=KC ) {
+    int pb = min( KC, k-p );        /* Last block may not be a full block */
+    for ( int i=0; i<m; i+=MC ) {
+      int ib = min( MC, m-i );        /* Last block may not be a full block */
+      for ( int j=0; j<n; j+=NC ) {
+	int jb = min( NC, n-j );        /* Last block may not be a full block */
         Gemm_JI_MRxNRKernel
           ( ib, jb, pb, &alpha( i,p ), ldA, &beta( p,j ), ldB, &gamma( i,j ), ldC );
       }

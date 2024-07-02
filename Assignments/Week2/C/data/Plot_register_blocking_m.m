@@ -1,12 +1,12 @@
 %% Blocking for vector registers.
-% % 
-% We next look at the different implementations that block for registers.  The 
+% %
+% We next look at the different implementations that block for registers.  The
 % final implementation  uses vector registers and vector instructions.
-% 
-% To gather the performance data, in the command (terminal) window change the 
-% directory to Assignments/Week2/C/.  After implementing a new implementation, 
-% execute it with "make" to gather data.  You will want to activate the plotting 
-% of a new performance curve by changing "( 0 )" to "( 1 )" in the appropriate 
+%
+% To gather the performance data, in the command (terminal) window change the
+% directory to Assignments/Week2/C/.  After implementing a new implementation,
+% execute it with "make" to gather data.  You will want to activate the plotting
+% of a new performance curve by changing "( 0 )" to "( 1 )" in the appropriate
 % place.
 
 % load plot colors
@@ -15,7 +15,7 @@ my_plot_colors;
 % Create figure
 figure1 = figure('Name','GFLOPS');
 
-% Create axes, labels, legends.  In future routines for plotting performance, 
+% Create axes, labels, legends.  In future routines for plotting performance,
 % the next few lines will be hidden in the script.
 axes2 = axes('Parent',figure1);
 hold(axes2,'on');
@@ -30,7 +30,7 @@ assert( max(abs(data(:,6))) < 1.0e-10, ...
     'Hmmm, better check if there is an accuracy problem');
 plot( data(:,1), data(:,5), 'DisplayName', 'IJP', 'MarkerSize', 8, 'LineWidth', 2, ...
     'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
-  
+
 % Plot performance data for JPI
 if ( 1 )
   output_JPI   % load data for JPI ordering
@@ -41,7 +41,7 @@ if ( 1 )
 end
 
 % Plot time data for JIP_P_Ger (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 )
   output_JIP_P_Ger
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -50,7 +50,7 @@ if ( 1 )
 end
 
 % Plot time data for JI_P_Ger (to plot change "0" to "1")
-if ( 0 ) 
+if ( 0 )
   output_JI_P_Ger
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -59,7 +59,7 @@ if ( 0 )
 end
 
 % Plot time data for JI_4x4Kernel  (to plot change "0" to "1")
-if ( 0 ) 
+if ( 1 )
   output_JI_4x4Kernel
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -83,7 +83,7 @@ if ( 0 )
     flops_per_cycle = 16;
     peak_gflops = turbo_clock_rate * flops_per_cycle;
 
-    axis( [ 0 v(2) 0 peak_gflops ] )  
+    axis( [ 0 v(2) 0 peak_gflops ] )
 end
 
 legend2 = legend( axes2, 'show' );
